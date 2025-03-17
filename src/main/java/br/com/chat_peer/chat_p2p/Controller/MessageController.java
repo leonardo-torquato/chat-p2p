@@ -16,12 +16,27 @@ public class MessageController {
     }
 
     @PostMapping("/send")
-    public void sendMessage(@RequestParam String sender, @RequestParam String message) {
-        peerService.sendMessage(sender, message);
+    public void sendMessage(@RequestBody MessageRequest request) {
+        peerService.sendMessage(request.getSender(), request.getMessage());
     }
 
     @GetMapping("/history")
     public List<String> getMessageHistory() {
         return peerService.getMessageHistory();
     }
+
+    // Classe interna para representar a requisição JSON
+    public static class MessageRequest {
+        private String sender;
+        private String message;
+
+        public String getSender() {
+            return sender;
+        }
+
+        public String getMessage() {
+            return message;
+        }
+    }
 }
+

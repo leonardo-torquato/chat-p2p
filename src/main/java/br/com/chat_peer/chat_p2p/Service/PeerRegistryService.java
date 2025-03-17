@@ -17,7 +17,7 @@ public class PeerRegistryService {
     }
 
     public synchronized List<String> getRegisteredPeers() {
-        return new ArrayList<>(registeredPeers);
+        return registeredPeers;
     }
 }
 
